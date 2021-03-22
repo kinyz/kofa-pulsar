@@ -2,7 +2,6 @@ package service
 
 import (
 	"kofa-pulsar/pb"
-	"sync"
 )
 
 type Service interface {
@@ -14,8 +13,8 @@ type Service interface {
 }
 
 type IService struct {
-	ser     *pb.Service
-	keyLock sync.RWMutex
+	ser *pb.Service
+	//keyLock sync.RWMutex
 }
 
 func NewService(msgId uint64, topic, alias, method string, level uint32) Service {

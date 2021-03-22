@@ -88,10 +88,14 @@ func (serMgr *SerManager) Get(msgId uint64) (Service, error) {
 }
 
 func (serMgr *SerManager) GetAll() map[uint64]Service {
+	serMgr.serLock.RLock()
+	defer serMgr.serLock.RUnlock()
 	return serMgr.services
 }
 
 func (serMgr *SerManager) Len() int {
+	serMgr.serLock.RLock()
+	defer serMgr.serLock.RUnlock()
 	return len(serMgr.services)
 }
 
